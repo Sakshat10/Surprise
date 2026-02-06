@@ -7,6 +7,7 @@ import LandingSection from "@/components/LandingSection";
 import ScrapbookSection from "@/components/ScrapbookSection";
 import AppreciationSection from "@/components/AppreciationSection";
 import QuizSection from "@/components/QuizSection";
+import VirtualHugSection from "@/components/VirtualHugSection";
 import MiniGameSection from "@/components/MiniGameSection";
 import GoldenUnlockSection from "@/components/GoldenUnlockSection";
 import ProposalSection from "@/components/ProposalSection";
@@ -30,7 +31,7 @@ import ProposalSection from "@/components/ProposalSection";
   - Music: Add your MP3 to /public/music/romantic-bg.mp3
 */
 
-type FlowStep = "landing" | "scrapbook" | "appreciate" | "quiz" | "game" | "unlock" | "proposal";
+type FlowStep = "landing" | "scrapbook" | "appreciate" | "quiz" | "hug" | "game" | "unlock" | "proposal";
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<FlowStep>("landing");
@@ -48,6 +49,10 @@ export default function Home() {
   };
 
   const handleQuizComplete = () => {
+    setCurrentStep("hug");
+  };
+
+  const handleHugComplete = () => {
     setCurrentStep("game");
   };
 
@@ -151,6 +156,18 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <QuizSection onComplete={handleQuizComplete} />
+          </motion.div>
+        )}
+
+        {currentStep === "hug" && (
+          <motion.div
+            key="hug"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5 }}
+          >
+            <VirtualHugSection onComplete={handleHugComplete} />
           </motion.div>
         )}
 

@@ -10,8 +10,9 @@ const proposalCopy = {
     intro1: "Itna sab kar liya tumne mere liye…", // 📝 CUSTOMIZE
     intro2: "Ab ek simple sa sawaal hai, bitchu ji 💖", // 📝 CUSTOMIZE
     button: "Will you be my Valentine?", // 📝 CUSTOMIZE
-    yesResponse1: "WOHOOOOOOOOOOOOO!!!!!!!", // 📝 CUSTOMIZE
-    yesResponse2: "Be Ready For Valentine's Day, my love. Mst khane Pine Ja rhe hai Hum tere paiso se", // 📝 CUSTOMIZE
+    yesResponse1: "We did it! 🎉", // 📝 CUSTOMIZE
+    yesResponse2: "Okay, now you're officially my Valentine 😌", // 📝 CUSTOMIZE
+    yesResponse3: "Plan: good food, bad jokes, and lots of us.", // 📝 CUSTOMIZE
 };
 
 export default function ProposalSection() {
@@ -151,7 +152,7 @@ export default function ProposalSection() {
 
                         {/* Response Text */}
                         <motion.p
-                            className="text-3xl sm:text-4xl md:text-5xl text-[#E91E63] mb-4"
+                            className="text-3xl sm:text-4xl md:text-5xl text-[#E91E63] mb-3"
                             style={{ fontFamily: "var(--font-dancing), cursive" }}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -161,13 +162,23 @@ export default function ProposalSection() {
                         </motion.p>
 
                         <motion.p
-                            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#E91E63] px-2"
+                            className="text-2xl sm:text-3xl md:text-4xl text-[#E91E63] mb-3"
                             style={{ fontFamily: "var(--font-dancing), cursive" }}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
                         >
                             {proposalCopy.yesResponse2}
+                        </motion.p>
+
+                        <motion.p
+                            className="text-xl sm:text-2xl md:text-3xl text-[#E91E63] px-2"
+                            style={{ fontFamily: "var(--font-caveat), cursive" }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2 }}
+                        >
+                            {proposalCopy.yesResponse3}
                         </motion.p>
 
                         {/* Hearts Row */}

@@ -23,7 +23,7 @@ const appreciationCards = [
     },
     {
         front: "💕",
-        back: "I love how you understand me without words 🤍",
+        back: "Being around you feels easy.",
     },
 ];
 
