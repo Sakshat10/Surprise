@@ -145,13 +145,13 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
 
                 {/* Hint */}
                 <motion.p
-                    className="mt-8 text-sm text-[#FF6B9D]/60"
+                    className="mt-8 text-md text-[#FF6B9D]/60"
                     style={{ fontFamily: "var(--font-caveat), cursive" }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
                 >
-                    Hint: A special date... 💭
+                    Hint: It begins with you, ends with me... 💭
                 </motion.p>
             </motion.div>
         </section>
