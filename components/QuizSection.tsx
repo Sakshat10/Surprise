@@ -32,12 +32,12 @@ const quizQuestions = [
         specialModal: "But I like that ass more 😏🍑",
     },
     {
-        question: "Which song reminds me of you? 🎵",
+        question: "Hum dono ka sabse common scene kya hota hai??",
         options: [
-            "Perfect - Ed Sheeran",
-            "All of Me - John Legend",
-            "Can't Help Falling in Love",
-            "Our secret song 😉",
+            "Is mahine Paise bchayenge",
+            "Abse Bahar ka nhi khayenge",
+            "Kl se gym ya walk",
+            "All of the above",
         ],
         correct: 3,
     },
