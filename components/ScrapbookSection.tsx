@@ -129,7 +129,7 @@ export default function ScrapbookSection({ onComplete }: ScrapbookSectionProps) 
     const memory = memories[currentPage];
 
     return (
-        <section className="scrapbook-desk min-h-screen flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
+        <section className="scrapbook-desk h-screen flex flex-col items-center justify-center px-4 py-2 sm:py-4 relative overflow-hidden">
             {/* Wooden Desk Background */}
             <div className="absolute inset-0 wooden-desk-bg" />
 
@@ -218,7 +218,7 @@ export default function ScrapbookSection({ onComplete }: ScrapbookSectionProps) 
 
             {/* Title - Handwritten style with tape */}
             <motion.div
-                className="relative mb-4 z-20"
+                className="relative mb-2 sm:mb-4 z-20"
                 initial={{ opacity: 0, y: -50, rotate: -3 }}
                 animate={{ opacity: 1, y: 0, rotate: -2 }}
                 transition={{ duration: 0.8, type: "spring" }}
@@ -244,7 +244,7 @@ export default function ScrapbookSection({ onComplete }: ScrapbookSectionProps) 
 
             {/* Page number - torn notebook paper style */}
             <motion.div
-                className="notebook-page-number mb-4 sm:mb-6 z-20"
+                className="notebook-page-number mb-2 sm:mb-4 z-20"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -333,10 +333,10 @@ export default function ScrapbookSection({ onComplete }: ScrapbookSectionProps) 
                                     />
                                 )}
 
-                                {/* Polaroid frame */}
-                                <div className="polaroid-messy bg-white p-2 sm:p-3 pb-12 sm:pb-16 shadow-2xl relative">
+                                {/* Polaroid frame - no caption inside on mobile */}
+                                <div className="polaroid-messy bg-white p-2 sm:p-3 pb-2 sm:pb-16 shadow-2xl relative">
                                     {/* Photo */}
-                                    <div className="relative w-40 sm:w-56 md:w-72 aspect-[4/3] overflow-hidden bg-gray-100">
+                                    <div className="relative w-52 sm:w-64 md:w-72 aspect-[4/3] overflow-hidden bg-gray-100">
                                         {memory.imageSrc ? (
                                             <>
                                                 <img
@@ -357,20 +357,20 @@ export default function ScrapbookSection({ onComplete }: ScrapbookSectionProps) 
                                         )}
                                     </div>
 
-                                    {/* Handwritten caption */}
+                                    {/* Handwritten caption - only visible on sm+ screens (inside polaroid) */}
                                     <p
-                                        className="absolute bottom-3 left-3 right-3 text-center text-lg sm:text-xl text-[#4A3728]"
+                                        className="hidden sm:block absolute bottom-3 left-3 right-3 text-center text-lg md:text-xl text-[#4A3728]"
                                         style={{ fontFamily: "var(--font-caveat), cursive" }}
                                     >
                                         {memory.caption}
                                     </p>
                                 </div>
 
-                                {/* Stickers around the polaroid */}
+                                {/* Stickers around the polaroid - hidden on mobile */}
                                 {memory.stickers.map((sticker, i) => (
                                     <motion.span
                                         key={i}
-                                        className="absolute text-2xl sm:text-3xl z-40 drop-shadow-lg"
+                                        className="absolute text-2xl sm:text-3xl z-40 drop-shadow-lg hidden sm:block"
                                         style={{
                                             top: i === 0 ? "-15px" : "auto",
                                             bottom: i === 1 ? "20px" : "auto",
@@ -388,21 +388,29 @@ export default function ScrapbookSection({ onComplete }: ScrapbookSectionProps) 
                                 ))}
                             </motion.div>
 
-                            {/* Sticky Note - hidden on very small screens */}
+                            {/* Caption below photo - only on mobile */}
+                            <motion.p
+                                className="block sm:hidden text-center text-lg text-[#4A3728] mt-3 px-2"
+                                style={{ fontFamily: "var(--font-caveat), cursive" }}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 }}
+                            >
+                                {memory.caption}
+                            </motion.p>
+
+                            {/* Sticky Note - straight on mobile, rotated on desktop */}
                             <motion.div
-                                className="sticky-note absolute hidden sm:block"
+                                className="sticky-note mt-3 sm:mt-0 sm:absolute"
                                 style={{
                                     backgroundColor: memory.stickyColor,
-                                    transform: `rotate(${memory.stickyRotation}deg)`,
-                                    right: "10%",
-                                    bottom: "15%",
                                 }}
-                                initial={{ opacity: 0, scale: 0, rotate: memory.stickyRotation - 20 }}
-                                animate={{ opacity: 1, scale: 1, rotate: memory.stickyRotation }}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.5, type: "spring" }}
-                                whileHover={{ scale: 1.1, rotate: 0 }}
+                                whileHover={{ scale: 1.1 }}
                             >
-                                <p className="text-sm sm:text-base" style={{ fontFamily: "var(--font-caveat), cursive" }}>
+                                <p className="text-sm sm:text-base text-center" style={{ fontFamily: "var(--font-caveat), cursive" }}>
                                     {memory.stickyNote}
                                 </p>
                             </motion.div>
