@@ -35,7 +35,7 @@ export default function ProposalSection() {
     };
 
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden bg-gradient-to-b from-[#FFE4EC] via-[#FFD1DC] to-[#FFCAD4]">
+        <section className="h-screen flex flex-col items-center justify-center px-4 py-2 relative overflow-hidden bg-gradient-to-b from-[#FFE4EC] via-[#FFD1DC] to-[#FFCAD4]">
             {/* Floating Hearts Background */}
             <FloatingHearts />
 

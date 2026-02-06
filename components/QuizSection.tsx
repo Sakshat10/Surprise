@@ -133,7 +133,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
         const allCorrect = score === quizQuestions.length;
 
         return (
-            <section className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+            <section className="h-screen flex flex-col items-center justify-center px-4 py-2">
                 <motion.div
                     className="glass p-8 sm:p-12 rounded-3xl text-center max-w-lg mx-4"
                     initial={{ scale: 0, rotate: -10 }}
@@ -258,7 +258,7 @@ export default function QuizSection({ onComplete }: QuizSectionProps) {
     }
 
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+        <section className="h-screen flex flex-col items-center justify-center px-4 py-2">
             {/* Special Modal */}
             <AnimatePresence>
                 {showSpecialModal && (
