@@ -1,65 +1,207 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import MusicToggle from "@/components/MusicToggle";
+import LandingSection from "@/components/LandingSection";
+import ScrapbookSection from "@/components/ScrapbookSection";
+import QuizSection from "@/components/QuizSection";
+import MiniGameSection from "@/components/MiniGameSection";
+import GoldenUnlockSection from "@/components/GoldenUnlockSection";
+import ProposalSection from "@/components/ProposalSection";
+
+/*
+  💕 VALENTINE'S DAY INTERACTIVE WEBSITE
+  
+  FLOW:
+  1. Landing Section - Welcome & Start Journey
+  2. Scrapbook Section - Browse through memories
+  3. Quiz Section - Test how well they know you
+  4. Mini-Game Section - Navigate the maze
+  5. Golden Unlock Section - Dramatic reveal
+  6. Proposal Section - The big question!
+
+  🎨 CUSTOMIZATION GUIDE:
+  - Photos: Replace images in /public/images/
+  - Captions: Edit ScrapbookSection.tsx (look for 📝 CUSTOMIZE comments)
+  - Quiz: Edit QuizSection.tsx (look for ❓ CUSTOMIZE comments)  
+  - Messages: Edit each section file for custom copy
+  - Music: Add your MP3 to /public/music/romantic-bg.mp3
+*/
+
+type FlowStep = "landing" | "scrapbook" | "quiz" | "game" | "unlock" | "proposal";
 
 export default function Home() {
+  const [currentStep, setCurrentStep] = useState<FlowStep>("landing");
+
+  const handleLandingComplete = () => {
+    setCurrentStep("scrapbook");
+  };
+
+  const handleScrapbookComplete = () => {
+    setCurrentStep("quiz");
+  };
+
+  const handleQuizComplete = () => {
+    setCurrentStep("game");
+  };
+
+  const handleGameComplete = () => {
+    setCurrentStep("unlock");
+  };
+
+  const handleUnlockComplete = () => {
+    setCurrentStep("proposal");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="min-h-screen relative overflow-x-hidden">
+      {/* Background Music Toggle - Always visible */}
+      <MusicToggle />
+
+      {/* Decorative Background Elements */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Floating decorative shapes */}
+        <motion.div
+          className="absolute top-20 left-10 w-16 h-16 rounded-full bg-pink-200/30 blur-xl"
+          animate={{
+            y: [0, -20, 0],
+            x: [0, 10, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <motion.div
+          className="absolute bottom-40 right-10 w-24 h-24 rounded-full bg-rose-200/30 blur-xl"
+          animate={{
+            y: [0, 20, 0],
+            x: [0, -15, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/4 w-20 h-20 rounded-full bg-pink-100/30 blur-xl"
+          animate={{
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      {/* Main Content - Step-by-Step Flow */}
+      <AnimatePresence mode="wait">
+        {currentStep === "landing" && (
+          <motion.div
+            key="landing"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.6 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <LandingSection onComplete={handleLandingComplete} />
+          </motion.div>
+        )}
+
+        {currentStep === "scrapbook" && (
+          <motion.div
+            key="scrapbook"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
           >
-            Documentation
-          </a>
+            <ScrapbookSection onComplete={handleScrapbookComplete} />
+          </motion.div>
+        )}
+
+        {currentStep === "quiz" && (
+          <motion.div
+            key="quiz"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+          >
+            <QuizSection onComplete={handleQuizComplete} />
+          </motion.div>
+        )}
+
+        {currentStep === "game" && (
+          <motion.div
+            key="game"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+          >
+            <MiniGameSection onComplete={handleGameComplete} />
+          </motion.div>
+        )}
+
+        {currentStep === "unlock" && (
+          <motion.div
+            key="unlock"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.2 }}
+            transition={{ duration: 0.6 }}
+          >
+            <GoldenUnlockSection onComplete={handleUnlockComplete} />
+          </motion.div>
+        )}
+
+        {currentStep === "proposal" && (
+          <motion.div
+            key="proposal"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <ProposalSection />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Progress Indicator (subtle) - hidden on landing */}
+      {currentStep !== "landing" && (
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
+          <div className="flex gap-2">
+            {(["scrapbook", "quiz", "game", "unlock", "proposal"] as FlowStep[]).map((step, index) => {
+              const steps: FlowStep[] = ["scrapbook", "quiz", "game", "unlock", "proposal"];
+              const currentIndex = steps.indexOf(currentStep);
+              const isCompleted = index < currentIndex;
+              const isCurrent = step === currentStep;
+
+              return (
+                <motion.div
+                  key={step}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${isCompleted
+                    ? "bg-[#E91E63]"
+                    : isCurrent
+                      ? "bg-[#FF6B9D] scale-125"
+                      : "bg-white/50"
+                    }`}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                />
+              );
+            })}
+          </div>
         </div>
-      </main>
-    </div>
+      )}
+    </main>
   );
 }
