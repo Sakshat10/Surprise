@@ -32,14 +32,14 @@ export default function MusicToggle() {
 
         // Fallback: Start music on first user interaction with page
         const startMusicOnInteraction = () => {
-            if (!isPlaying && audioRef.current) {
+            if (audioRef.current && audioRef.current.paused) {
                 audioRef.current.play().then(() => {
                     setIsPlaying(true);
+                    // Remove listeners after first successful play
+                    document.removeEventListener("click", startMusicOnInteraction);
+                    document.removeEventListener("touchstart", startMusicOnInteraction);
                 }).catch(() => { });
             }
-            // Remove listeners after first successful play
-            document.removeEventListener("click", startMusicOnInteraction);
-            document.removeEventListener("touchstart", startMusicOnInteraction);
         };
 
         document.addEventListener("click", startMusicOnInteraction);

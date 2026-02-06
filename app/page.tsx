@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import MusicToggle from "@/components/MusicToggle";
 import LandingSection from "@/components/LandingSection";
 import ScrapbookSection from "@/components/ScrapbookSection";
+import AppreciationSection from "@/components/AppreciationSection";
 import QuizSection from "@/components/QuizSection";
 import MiniGameSection from "@/components/MiniGameSection";
 import GoldenUnlockSection from "@/components/GoldenUnlockSection";
@@ -29,7 +30,7 @@ import ProposalSection from "@/components/ProposalSection";
   - Music: Add your MP3 to /public/music/romantic-bg.mp3
 */
 
-type FlowStep = "landing" | "scrapbook" | "quiz" | "game" | "unlock" | "proposal";
+type FlowStep = "landing" | "scrapbook" | "appreciate" | "quiz" | "game" | "unlock" | "proposal";
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<FlowStep>("landing");
@@ -39,6 +40,10 @@ export default function Home() {
   };
 
   const handleScrapbookComplete = () => {
+    setCurrentStep("appreciate");
+  };
+
+  const handleAppreciationComplete = () => {
     setCurrentStep("quiz");
   };
 
@@ -122,6 +127,18 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <ScrapbookSection onComplete={handleScrapbookComplete} />
+          </motion.div>
+        )}
+
+        {currentStep === "appreciate" && (
+          <motion.div
+            key="appreciate"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+          >
+            <AppreciationSection onComplete={handleAppreciationComplete} />
           </motion.div>
         )}
 
