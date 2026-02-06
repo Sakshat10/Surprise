@@ -43,7 +43,7 @@ export default function GoldenUnlockSection({ onComplete }: GoldenUnlockSectionP
     };
 
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
+        <section className="h-screen flex flex-col items-center justify-center px-4 py-2 relative overflow-hidden">
             {/* Darkened Background */}
             <motion.div
                 className="absolute inset-0 bg-black/60 z-0"
@@ -104,7 +104,7 @@ export default function GoldenUnlockSection({ onComplete }: GoldenUnlockSectionP
 
             {/* Golden Frame */}
             <motion.div
-                className="relative z-20 max-w-2xl mx-auto text-center p-8 sm:p-12"
+                className="relative z-20 w-[90vw] max-w-md sm:max-w-lg md:max-w-2xl mx-auto text-center p-4 sm:p-8 md:p-12"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
@@ -137,7 +137,7 @@ export default function GoldenUnlockSection({ onComplete }: GoldenUnlockSectionP
                             transition={{ duration: 0.5 }}
                         >
                             <h2
-                                className="text-2xl sm:text-3xl md:text-4xl text-[#FFD700]"
+                                className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[#FFD700] px-2"
                                 style={{ fontFamily: "var(--font-dancing), cursive" }}
                             >
                                 <TypewriterText
