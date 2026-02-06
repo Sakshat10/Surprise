@@ -159,10 +159,10 @@ export default function MiniGameSection({ onComplete }: MiniGameSectionProps) {
     };
 
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
+        <section className="h-screen flex flex-col items-center justify-center px-4 py-2 relative overflow-hidden">
             {/* Title */}
             <motion.h2
-                className="text-3xl sm:text-4xl md:text-5xl text-center mb-2 text-[#E91E63] z-10"
+                className="text-xl sm:text-3xl md:text-4xl text-center mb-1 sm:mb-2 text-[#E91E63] z-10 px-2"
                 style={{ fontFamily: "var(--font-dancing), cursive" }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -172,7 +172,7 @@ export default function MiniGameSection({ onComplete }: MiniGameSectionProps) {
 
             {/* Instructions */}
             <motion.p
-                className="text-lg text-center text-[#FF6B9D] mb-2 z-10"
+                className="text-sm sm:text-lg text-center text-[#FF6B9D] mb-1 sm:mb-2 z-10 px-2"
                 style={{ fontFamily: "var(--font-caveat), cursive" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
